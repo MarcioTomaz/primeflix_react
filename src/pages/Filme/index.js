@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../services/api';
-import './filme-info.css'
+import './filme-info.css';
+import { toast } from 'react-toastify';
 
 function Filme() {
 
@@ -43,13 +44,13 @@ function Filme() {
     const hasFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id);
 
     if (hasFilme) {
-      alert("Esse filme já esta na lista");
+      toast.warning("Esse filme já esta na lista");
       return;
     }
 
     filmesSalvos.push(filme);
     localStorage.setItem("@primeflix", JSON.stringify(filmesSalvos));
-    alert("Filme salvo com sucesso!")
+    toast.success("Filme salvo com sucesso!")
 
   }
 
